@@ -269,7 +269,7 @@ function remove_vars_store() {
 }
 
 #This function should be invoked after check_bbl_input_params is executed to make sure Azure service pricipal information exists
-write_azure_serivce_principal_credential() {
+write_azure_service_principal_credential() {
   set +x
   export BBL_AZURE_CLIENT_ID="${BBL_AZURE_CLIENT_ID}"
   export BBL_AZURE_CLIENT_SECRET="${BBL_AZURE_CLIENT_SECRET}"

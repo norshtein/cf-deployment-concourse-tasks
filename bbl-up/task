@@ -52,6 +52,7 @@ function write_bbl_certs() {
 }
 
 function main() {
+  set +x  
   local root_dir
   root_dir="${1}"
 
