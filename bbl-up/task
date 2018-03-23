@@ -30,6 +30,7 @@ function check_fast_fails() {
 
 function write_bbl_certs() {
   set +x
+ 
   if [ -f "${BBL_LB_CERT}" ]; then
     bbl_cert_path="${BBL_LB_CERT}"
   else
@@ -52,7 +53,12 @@ function write_bbl_certs() {
 }
 
 function main() {
-  set +x  
+#Using custom bbl
+  wget "https://github.com/norshtein/bosh-bootloader/releases/download/v7.2/bbl"
+  chmod +x bbl
+  sudo mv bbl /usr/local/bin
+  echo $PATH
+
   local root_dir
   root_dir="${1}"
 
@@ -67,7 +73,7 @@ function main() {
   if [ "${BBL_IAAS}" == "azure" ]; then
     write_azure_service_principal_credential
   fi
-
+  
   mkdir -p "bbl-state/${BBL_STATE_DIR}"
   pushd "bbl-state/${BBL_STATE_DIR}"
     bbl version
@@ -92,9 +98,9 @@ function main() {
       lb_flags="--lb-type=cf --lb-cert=${bbl_cert_path} ${bbl_cert_chain_flag} --lb-key=${bbl_key_path} --lb-domain=${LB_DOMAIN}"
     fi
 
-    bbl plan \
+    bbl --debug plan \
       ${name_flag} \
-      ${lb_flags} > "${root_dir}/bbl_plan.txt"
+      ${lb_flags} > "${root_dir}/bbl_plan.txt" \
 
     if [ -n "${BBL_CONFIG_DIR}" ]; then
       cp -r ${root_dir}/bbl-config/${BBL_CONFIG_DIR}/. .
@@ -103,6 +109,11 @@ function main() {
     bbl --debug up \
       ${name_flag} \
       ${lb_flags} > "${root_dir}/bbl_up.txt"
+    
+    echo "================DEBUG====================="
+    ls -alR
+    pwd
+    echo "=========================================="
   popd
 }
 
