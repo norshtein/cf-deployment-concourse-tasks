@@ -7,8 +7,8 @@ ENV JQ_CHECKSUM d8e36831c3c94bb58be34dd544f44a6c6cb88568
 
 ENV cf_cli_version 6.35.2
 ENV bosh_cli_version 3.0.1
-ENV bbl_version 6.4.7
-ENV terraform_version 0.11.4
+ENV bbl_version 6.4.8
+ENV terraform_version 0.11.5
 ENV credhub_cli_version 1.7.0
 
 RUN \
@@ -93,6 +93,10 @@ RUN \
   tar xzvf /tmp/go${GO_VERSION}.linux-amd64.tar.gz -C /usr/local && \
   mkdir ${GOPATH} && \
   rm -rf /tmp/*
+
+# Log Cache CLI
+RUN go get -u code.cloudfoundry.org/log-cache-cli && \
+    cf install-plugin ${GOPATH}/bin/log-cache-cli -f
 
 RUN go get -u github.com/cloudfoundry/uptimer && \
   go get -u github.com/onsi/ginkgo/... && \

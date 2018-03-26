@@ -1,0 +1,18 @@
+#!/bin/bash -eux
+
+# shellcheck disable=SC1091
+source cf-deployment-concourse-tasks/shared-functions
+
+function main() {
+  export USE_VARS_STORE="false"
+
+  check_input_params
+  setup_bosh_env_vars
+  bosh_interpolate
+  if [ "$REGENERATE_CREDENTIALS" == true ]; then
+    remove_credentials_from_credhub
+  fi
+  bosh_deploy
+}
+
+main
