@@ -277,6 +277,7 @@ write_azure_service_principal_credential_without_region() {
   export BBL_AZURE_CLIENT_SECRET="${BBL_AZURE_CLIENT_SECRET}"
   export BBL_AZURE_TENANT_ID="${BBL_AZURE_TENANT_ID}"
   export BBL_AZURE_SUBSCRIPTION_ID="${BBL_AZURE_SUBSCRIPTION_ID}"
+}
 
 function remove_credentials_from_credhub() {
   local director_name
