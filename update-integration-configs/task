@@ -68,13 +68,6 @@ function main() {
 
     echo "${new_cats_integration_config}" > "integration-configs/${CATS_INTEGRATION_CONFIG_FILE}"
     echo "updating CATs integration config file: ${CATS_INTEGRATION_CONFIG_FILE}..."
-    echo "=====================DEBUG======================="
-    echo "integration-configs/${CATS_INTEGRATION_CONFIG_FILE}"
-    echo $admin_password
-    echo $new_cats_integration_config
-    cat integration-configs/${CATS_INTEGRATION_CONFIG_FILE}
-    echo "================================================="
-
   fi
 
   if [ -f "integration-configs/${RATS_INTEGRATION_CONFIG_FILE}" ]; then

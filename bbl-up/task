@@ -53,7 +53,7 @@ function write_bbl_certs() {
 }
 
 function main() {
-#Using custom bbl
+#Using custom bbl,will be removed after next bbl release
   wget "https://github.com/norshtein/bosh-bootloader/releases/download/v7.3/bbl"
   chmod +x bbl
   sudo mv bbl /usr/local/bin
@@ -74,10 +74,6 @@ function main() {
     write_azure_service_principal_credential
   fi
 
-  echo "================DEBUG====================="
-  ls -alR
-  pwd
-  echo "=========================================="
    
   mkdir -p "bbl-state/${BBL_STATE_DIR}"
   pushd "bbl-state/${BBL_STATE_DIR}"
@@ -115,10 +111,6 @@ function main() {
       ${name_flag} \
       ${lb_flags} > "${root_dir}/bbl_up.txt"
     
-    echo "================DEBUG====================="
-    ls -alR
-    pwd
-    echo "=========================================="
   popd
 }
 

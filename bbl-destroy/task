@@ -4,7 +4,7 @@
 source cf-deployment-concourse-tasks/shared-functions
 
 function main() {
-#Using custom bbl
+#Using custom bbl,will be removed after next bbl release
   wget "https://github.com/norshtein/bosh-bootloader/releases/download/v7.3/bbl"
   chmod +x bbl
   sudo mv bbl /usr/local/bin
