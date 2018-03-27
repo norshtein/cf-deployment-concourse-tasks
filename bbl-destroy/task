@@ -4,6 +4,11 @@
 source cf-deployment-concourse-tasks/shared-functions
 
 function main() {
+#Using custom bbl,will be removed after next bbl release
+  wget "https://github.com/norshtein/bosh-bootloader/releases/download/v7.3/bbl"
+  chmod +x bbl
+  sudo mv bbl /usr/local/bin
+
   local root_dir
   root_dir="${1}"
 
@@ -17,6 +22,8 @@ function main() {
       pushd "${root_dir}/bbl-state"
         write_gcp_service_account_key
       popd
+    elif [ "${bbl_iaas}" == "azure" ]; then
+      write_azure_service_principal_credential_without_region
     fi
 
     bbl \
