@@ -3,7 +3,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: timakin/golang-and-ruby-image} 
+  source: {repository: ubuntu} 
 
 inputs:
 - name: cf-deployment-concourse-tasks
