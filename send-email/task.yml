@@ -3,10 +3,16 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: ubuntu} 
+  source: {repository: concourse/buildroot, tag: git}
 
 inputs:
 - name: cf-deployment-concourse-tasks
 
+outputs:
+- name: email-out
+
+params:
+  OUTPUT_SUBJECT_FILE_NAME: generated-subject
+  OUTPUT_BODY_FILE_NAME: generated-body
 run:
   path: cf-deployment-concourse-tasks/send-email/task.sh
