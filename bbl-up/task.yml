@@ -105,3 +105,13 @@ params:
   # - Optional
   # - Set to `true` to skip load balancer creation,
   # - for example, a BOSH Lite environment
+  
+  USING_CUSTOM_CPI_VERSION: false
+  # - Optional 
+  # - Set to `true` to use custom CPI version,
+  # - if set to true, CPI_VERSION parameter is needed
+
+  CPI_VERSION: 
+  # - Optional
+  # - CPI version using in bosh
+  # - Will be skipped if `USING_CUSTOM_CPI_VERSION` is not set to true

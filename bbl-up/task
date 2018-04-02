@@ -103,6 +103,11 @@ function main() {
       ${name_flag} \
       ${lb_flags} > "${root_dir}/bbl_plan.txt" \
 
+# Change to custom CPI version
+    if [ ${USING_CUSTOM_CPI_VERSION} == true ]; then
+      sed -i "s/\(version: \).*/\1\"${CPI_VERSION}\"/" bosh-deployment/azure/cpi.yml
+    fi
+
     if [ -n "${BBL_CONFIG_DIR}" ]; then
       cp -r ${root_dir}/bbl-config/${BBL_CONFIG_DIR}/. .
     fi
