@@ -8,11 +8,22 @@ if [ "$USE_VARS_STORE" == true ]; then
 fi
 
 function main() {
+  echo "====================DEBUG===================="
+  ls -al vars-store
+  pwd vars-store
+  echo "============================================="
+
   check_input_params
   setup_bosh_env_vars
   if [ "$REGENERATE_VARS_STORE" == true ]; then
     remove_vars_store
   fi
+  
+  echo "====================DEBUG===================="
+  ls -al vars-store
+  pwd vars-store
+  echo "============================================="
+  
   bosh_interpolate
   bosh_deploy
 }
