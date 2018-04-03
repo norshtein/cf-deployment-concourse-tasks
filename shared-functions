@@ -264,7 +264,7 @@ function remove_vars_store() {
 write_azure_service_principal_credential() {
   set +x
   
-  local include_azure_region=${1}
+  local include_azure_region=${1:-true}
   export BBL_AZURE_CLIENT_ID="${BBL_AZURE_CLIENT_ID}"
   export BBL_AZURE_CLIENT_SECRET="${BBL_AZURE_CLIENT_SECRET}"
   export BBL_AZURE_TENANT_ID="${BBL_AZURE_TENANT_ID}"
