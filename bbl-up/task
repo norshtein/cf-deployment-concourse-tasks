@@ -52,11 +52,6 @@ function write_bbl_certs() {
 }
 
 function main() {
-#Using custom bbl,will be removed after next bbl release
-  wget "https://github.com/norshtein/bosh-bootloader/releases/download/v7.3/bbl"
-  chmod +x bbl
-  sudo mv bbl /usr/local/bin
-
   local root_dir
   root_dir="${1}"
 
@@ -98,7 +93,7 @@ function main() {
 
     bbl plan \
       ${name_flag} \
-      ${lb_flags} > "${root_dir}/bbl_plan.txt" 
+      ${lb_flags} > "${root_dir}/bbl_plan.txt"
 
     if [ -n "${BBL_CONFIG_DIR}" ]; then
       cp -r ${root_dir}/bbl-config/${BBL_CONFIG_DIR}/. .
