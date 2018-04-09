@@ -105,7 +105,10 @@ function main() {
 
 # Change to custom CPI version
     if [ ${USING_CUSTOM_CPI_VERSION} == true ]; then
-      sed -i "s/\(version: \).*/\1\"${CPI_VERSION}\"/" bosh-deployment/azure/cpi.yml
+      # Escape / in URL
+      CPI_SHA1=$(echo ${CPI_SHA1} | sed 's:\/:\\\/:g')
+      cat bosh-deployment/azure/cpi.yml | perl -0pe "s/(name: bosh-azure-cpi\s*version: .*\s*)url: .*\s*sha1: .*/\1url: ${CPI_URL}\n    sha1: ${CPI_SHA1}/" > tmp
+      mv tmp bosh-deployment/azure/cpi.yml
     fi
 
     if [ -n "${BBL_CONFIG_DIR}" ]; then

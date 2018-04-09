@@ -111,7 +111,8 @@ params:
   # - Set to `true` to use custom CPI version,
   # - if set to true, CPI_VERSION parameter is needed
 
-  CPI_VERSION: 
+  CPI_URL:
+  CPI_SHA1:
   # - Optional
-  # - CPI version using in bosh
+  # - CPI url and sha1 using in bosh
   # - Will be skipped if `USING_CUSTOM_CPI_VERSION` is not set to true
