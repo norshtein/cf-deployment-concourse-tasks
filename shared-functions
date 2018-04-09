@@ -259,23 +259,6 @@ function remove_vars_store() {
   rm -f vars-store/"${VARS_STORE_FILE}"
 }
 
-# This function should be invoked after check_bbl_input_params is executed to make sure Azure service pricipal information exists
-# This function can optionally take one argument.If this argument set to false, BBL_AZURE_REGION will not be exported.The argument is default true.
-write_azure_service_principal_credential() {
-  set +x
-  
-  local include_azure_region=${1}
-  export BBL_AZURE_CLIENT_ID="${BBL_AZURE_CLIENT_ID}"
-  export BBL_AZURE_CLIENT_SECRET="${BBL_AZURE_CLIENT_SECRET}"
-  export BBL_AZURE_TENANT_ID="${BBL_AZURE_TENANT_ID}"
-  export BBL_AZURE_SUBSCRIPTION_ID="${BBL_AZURE_SUBSCRIPTION_ID}"
-  if [ $include_azure_region != false ]; then
-	export BBL_AZURE_REGION="${BBL_AZURE_REGION}"
-  fi
-  
-  set -x
-}
-
 function remove_credentials_from_credhub() {
   local director_name
   director_name=$(jq -r .bosh.directorName bbl-state/${BBL_STATE_DIR}/bbl-state.json)

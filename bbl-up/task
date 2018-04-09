@@ -63,10 +63,6 @@ function main() {
     popd
   fi
 
-  if [ "${BBL_IAAS}" == "azure" ]; then
-    write_azure_service_principal_credential
-  fi
-
   mkdir -p "bbl-state/${BBL_STATE_DIR}"
   pushd "bbl-state/${BBL_STATE_DIR}"
     bbl version

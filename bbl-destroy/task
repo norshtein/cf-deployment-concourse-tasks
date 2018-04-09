@@ -17,8 +17,6 @@ function main() {
       pushd "${root_dir}/bbl-state"
         write_gcp_service_account_key
       popd
-    elif [ "${bbl_iaas}" == "azure" ]; then
-      write_azure_service_principal_credential false
     fi
 
     bbl \
